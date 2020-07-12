@@ -1,7 +1,7 @@
 import XCTest
 import class Foundation.Bundle
 
-final class Zombie_diceTests: XCTestCase {
+final class ZombieDiceGameTests: XCTestCase {
     func testExample() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct
@@ -12,7 +12,7 @@ final class Zombie_diceTests: XCTestCase {
             return
         }
 
-        let fooBinary = productsDirectory.appendingPathComponent("Zombie-dice")
+        let fooBinary = productsDirectory.appendingPathComponent("ZombieDiceGame")
 
         let process = Process()
         process.executableURL = fooBinary
