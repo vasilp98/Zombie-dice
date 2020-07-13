@@ -2,18 +2,19 @@ import Foundation
 
 public class Game {
     private let configurations: Configurations
-    private var currentPlayer: Player
+    private var currentPlayer = Player(name: "")
     private let ioProcessor: IOProcessor
     private var players: Array<Player>
+    private let turnFactory: TurnFactoryProtocol
 
-    public var isRunning: Bool
+    public var isRunning: Bool = false
 
-    public init(configurations: Configurations, ioProcessor: IOProcessor) {
+    public init(configurations: Configurations, turnFactory: TurnFactoryProtocol, ioProcessor: IOProcessor) {
         self.configurations = configurations;
         self.players = configurations.players.map { $0.copy() as! Player }
-        self.currentPlayer = Player(name: "")
+        
+        self.turnFactory = turnFactory
         self.ioProcessor = ioProcessor
-        self.isRunning = false
     }
 
     public func start() {
@@ -40,7 +41,7 @@ public class Game {
         self.currentPlayer = self.getNextPlayer()
         self.ioProcessor.write("Next turn is playing \(self.currentPlayer.name)")
 
-        let turn = Turn(player: self.currentPlayer, ioProcessor: self.ioProcessor)
+        let turn = self.turnFactory.create(player: self.currentPlayer)
         while(!turn.isEnded){
 
             let drawnDices = turn.drawDices()

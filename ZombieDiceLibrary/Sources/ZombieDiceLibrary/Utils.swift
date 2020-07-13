@@ -16,7 +16,7 @@ public class Utils {
         
         var response: String
         repeat {
-            ioProcessor.write(question + "[y/n]")
+            ioProcessor.write(question + "[y/n]", terminator: " ")
             response = ioProcessor.read()!
         } while response != "y" && response != "n"
 

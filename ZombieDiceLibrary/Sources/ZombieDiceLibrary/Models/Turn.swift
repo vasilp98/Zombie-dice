@@ -11,7 +11,7 @@ public class Turn {
 
     public var isEnded: Bool = false
 
-    init (player: Player, ioProcessor: IOProcessor, diceCollection: Drawable = DiceCollection()) {
+    public init (player: Player, ioProcessor: IOProcessor, diceCollection: Drawable = DiceCollection()) {
         self.player = player
         self.diceCollection = diceCollection
         self.ioProcessor = ioProcessor

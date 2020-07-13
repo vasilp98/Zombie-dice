@@ -1,4 +1,4 @@
-public final class ServiceLocator {
+public final class DependencyContainer: DependencyContainerProtocol {
     private var services: [ObjectIdentifier: Any]
     
     public init() {

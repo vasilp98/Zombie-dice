@@ -1,5 +1,5 @@
 public protocol IOProcessor {
-    func write(_ items: Any)
+    func write(_ items: Any, separator: String, terminator: String)
 
     func writeSeparator()
 
