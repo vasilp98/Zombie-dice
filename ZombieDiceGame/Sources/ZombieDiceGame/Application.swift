@@ -20,6 +20,7 @@ class Application {
             game.startNextTurn()
 
             if !game.isRunning {
+                console.writeSeparator()
                 let response = Utils.askYesNo(question: "Do you want to play again with the same configuration?", ioProcessor: console)
 
                 if response == true {
