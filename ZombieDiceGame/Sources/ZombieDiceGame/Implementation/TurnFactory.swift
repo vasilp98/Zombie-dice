@@ -7,7 +7,7 @@ class TurnFactory: TurnFactoryProtocol {
         self.ioProcessor = ioProcessor
     }
 
-    func create(player: Player) -> Turn {
+    func create(player: Player) -> TurnProtocol {
         return Turn(player: player, ioProcessor: self.ioProcessor)
     }
 }

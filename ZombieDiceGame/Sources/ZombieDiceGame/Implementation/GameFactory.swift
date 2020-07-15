@@ -9,7 +9,7 @@ class GameFactory: GameFactoryProtocol {
         self.ioProcessor = ioProcessor
     }
 
-    func create(configurations: Configurations) -> Game {
+    func create(configurations: Configurations) -> GameProtocol {
         return Game(configurations: configurations, turnFactory: self.turnFactory, ioProcessor: self.ioProcessor)
     }
 }

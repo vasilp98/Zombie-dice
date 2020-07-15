@@ -1,3 +1,3 @@
 public protocol GameFactoryProtocol {
-    func create(configurations: Configurations) -> Game
+    func create(configurations: Configurations) -> GameProtocol
 }

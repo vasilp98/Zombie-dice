@@ -30,7 +30,7 @@ class Application {
         }
     }
 
-    func makeConfigurations(ioProcessor: IOProcessor) -> Configurations {
+    private func makeConfigurations(ioProcessor: IOProcessor) -> Configurations {
         ioProcessor.write("How many players will play?")
         
         let playersCount = Int(ioProcessor.read()!)

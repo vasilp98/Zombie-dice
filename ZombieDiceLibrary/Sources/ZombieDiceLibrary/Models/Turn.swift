@@ -1,6 +1,6 @@
 import Foundation
 
-public class Turn {
+public class Turn : TurnProtocol {
     private var pointsEarned: Int = 0
     private var gunshots: Int = 0
     private var player: Player

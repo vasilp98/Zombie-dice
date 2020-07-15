@@ -1,6 +1,6 @@
 import Foundation
 
-public class Game {
+public class Game : GameProtocol {
     private let configurations: Configurations
     private var currentPlayer = Player(name: "")
     private let ioProcessor: IOProcessor
