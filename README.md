@@ -1,5 +1,5 @@
 # ZombieDice
-A university project for course "Swift 2019/2020"
+A university project for courses "Swift 2019/2020" and "Clean code"
 
 # Описание:
 "Zombie Dice" е елементарна парти игра за 2-8 играчи - в нея играчите са зомби, което иска да изяде колкото се може повече мозъци. 
