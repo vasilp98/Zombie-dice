@@ -1,6 +1,6 @@
-public class Player : CustomStringConvertible, Equatable, Copyable {
-    private(set) var points: Int
-    private(set) var name: String
+public class Player : PlayerProtocol {
+    private(set) public var points: Int
+    private(set) public var name: String
     
     public init(name: String) {
         self.points = 0

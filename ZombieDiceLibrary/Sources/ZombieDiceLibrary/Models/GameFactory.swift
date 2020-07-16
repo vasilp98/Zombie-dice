@@ -1,5 +1,3 @@
-import ZombieDiceLibrary
-
 class GameFactory: GameFactoryProtocol {
     private let turnFactory: TurnFactoryProtocol
     private let ioProcessor: IOProcessor

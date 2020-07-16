@@ -1,26 +1,26 @@
 import ZombieDiceLibrary
 
 class Application {
-    private let container: DependencyContainerProtocol 
+    private let console: IOProcessor
+    private let gameFactory: GameFactoryProtocol
 
     init(container: DependencyContainerProtocol) {
-        self.container = container
+        self.console = container.resolve()!
+        self.gameFactory = container.resolve()!
     }
 
     func start() {
-        let console: IOProcessor = self.container.resolve()!
-        console.write("Hello everyone, you're playing Zombie dice.")
+        self.console.write("Hello everyone, you're playing Zombie dice.")
 
-        let configurations = makeConfigurations(ioProcessor: console);
-        let gameFactory: GameFactoryProtocol = self.container.resolve()!
-        let game = gameFactory.create(configurations: configurations)
+        let configurations = makeConfigurations();
+        let game = self.gameFactory.create(configurations: configurations)
         game.start()
 
         while(game.isRunning) {
             game.startNextTurn()
 
             if !game.isRunning {
-                console.writeSeparator()
+                self.console.writeSeparator()
                 let response = Utils.askYesNo(question: "Do you want to play again with the same configuration?", ioProcessor: console)
 
                 if response == true {
@@ -30,17 +30,17 @@ class Application {
         }
     }
 
-    private func makeConfigurations(ioProcessor: IOProcessor) -> Configurations {
-        ioProcessor.write("How many players will play?")
+    private func makeConfigurations() -> Configurations {
+        self.console.write("How many players will play?")
         
-        let playersCount = Int(ioProcessor.read()!)
+        let playersCount = Int(self.console.read()!)
         if playersCount != nil && 1 < playersCount! && playersCount! < 9 {
 
-            ioProcessor.write("Please write the \(playersCount!) players' names.")
+            self.console.write("Please write the \(playersCount!) players' names.")
 
             var players: Array<Player> = Array()
             for _ in 0..<playersCount! {
-                let playerName = ioProcessor.read()!
+                let playerName = self.console.read()!
                 let player = Player(name: playerName)
 
                 players.append(player)
@@ -48,8 +48,8 @@ class Application {
 
             return Configurations(players: players)
         } else {
-            ioProcessor.write("Please provide number between 2 and 8")
-            return makeConfigurations(ioProcessor: ioProcessor)
+            self.console.write("Please provide number between 2 and 8")
+            return makeConfigurations()
         }   
     }
 }

@@ -50,9 +50,9 @@ public class Game : GameProtocol {
 
             for dice in drawnDices {
                 let rolledSide = dice.roll()
-                self.ioProcessor.write("\(dice.type) dice landed on \(Utils.getSideLabel(side: rolledSide))")
+                self.ioProcessor.write("\(dice.type) dice landed on \(Utils.getSideLabel(side: rolledSide.type))")
 
-                turn.changeStatistics(diceRolled: dice, landedSide: rolledSide)
+                turn.changeStatistics(landedSide: rolledSide)
             }
             
             turn.showStatistics()
