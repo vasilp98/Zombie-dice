@@ -3,10 +3,10 @@ import Foundation
 public class Turn : TurnProtocol {
     private var pointsEarned: Int = 0
     private var gunshotsTaken: Int = 0
-    private var player: Player
     private var isPlayerDead: Bool = false
-    
-    private var drawableCollection: Drawable
+
+    private let player: Player
+    private let drawableCollection: Drawable
     private let ioProcessor: IOProcessor
 
     public var isEnded: Bool = false
@@ -51,7 +51,6 @@ public class Turn : TurnProtocol {
     public func askToContinueIfPossible() {
         if self.isPlayerDead == true {
             self.ioProcessor.write("You received three or more gunshots. Your turn has ended and no points are earned.")
-            self.pointsEarned = 0
             self.isEnded = true
             return
         }
@@ -77,6 +76,6 @@ public class Turn : TurnProtocol {
     }
 
     public func getEarnedPoints() -> Int {
-        return self.pointsEarned
+        return self.isPlayerDead ? 0 : self.pointsEarned
     }
 }
